@@ -6,20 +6,16 @@
             local=${workspace}/cnf/release;\
             pretty=true,\
          aQute.bnd.deployer.repository.FixedIndexedRepo;\
-            name=FPAI Bundle Hub - Build;\
+            name=FAN Bundle Hub - Build;\
             locations=https://raw.githubusercontent.com/flexiblepower/bundle-hub/split-repos/build/index.xml;\
             cache=${workspace}/cnf/cache,\
          aQute.bnd.deployer.repository.FixedIndexedRepo;\
-            name=FPAI Bundle Hub - Run;\
+            name=FAN Bundle Hub - Run;\
             locations=https://raw.githubusercontent.com/flexiblepower/bundle-hub/split-repos/run/index.xml;\
             cache=${workspace}/cnf/cache,\
          aQute.bnd.deployer.repository.FixedIndexedRepo;\
-            name=FPAI Bundle Hub - Test;\
+            name=FAN Bundle Hub - Test;\
             locations=https://raw.githubusercontent.com/flexiblepower/bundle-hub/split-repos/test/index.xml;\
-            cache=${workspace}/cnf/cache,\
-         aQute.bnd.deployer.repository.FixedIndexedRepo;\
-            name=FPAI Core Current Release;\
-            locations=https://github.com/flexiblepower/fpai-core/releases/download/v14.10/index.xml;\
             cache=${workspace}/cnf/cache
 
 -releaserepo: Release
