@@ -3,5 +3,5 @@
 Bundle-Category: FlexiblePower Application Infrastructure
 qualifier: SNAPSHOT-${tstamp}
 
--baseline: *
--baselinerepo: FPAI Core Current Release
+#-baseline: *
+#-baselinerepo: FPAI Core Current Release
