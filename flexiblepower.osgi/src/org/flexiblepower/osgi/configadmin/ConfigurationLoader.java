@@ -17,12 +17,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import aQute.bnd.annotation.component.Activate;
+import aQute.bnd.annotation.component.Component;
 import aQute.bnd.annotation.component.Deactivate;
 import aQute.bnd.annotation.metatype.Configurable;
 import aQute.bnd.annotation.metatype.Meta.AD;
 
 import com.google.gson.Gson;
 
+@Component(designateFactory = ConfigurationLoader.Config.class, provide = ConfigurationLoader.class, immediate = true)
 public class ConfigurationLoader {
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationLoader.class);
     private final List<Configuration> configurations = new ArrayList<Configuration>();
