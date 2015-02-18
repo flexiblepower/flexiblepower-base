@@ -10,3 +10,4 @@ coverage.xml
 instrumented/
 .recommenders/
 .gradle/
+RemoteSystemsTempFiles/
