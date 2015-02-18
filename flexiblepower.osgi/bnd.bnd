@@ -1,0 +1,11 @@
+-buildpath: ${default-buildpath},\
+	org.apache.commons.io,\
+	com.google.gson
+-testpath: ${test}
+
+Bundle-Version: 1.0.0.${qualifier}
+
+Export-Package:  \
+	org.flexiblepower.osgi.configadmin,\
+	org.flexiblepower.osgi.configadmin.objects,\
+	org.flexiblepower.osgi.helpers
