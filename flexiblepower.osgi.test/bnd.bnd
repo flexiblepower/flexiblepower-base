@@ -1,7 +1,0 @@
-Bundle-Version: 1.0.0.${qualifier}
-Service-Component: *
-
--buildpath: ${default-buildpath},\
-	org.apache.commons.io,\
-	com.google.gson
--testpath: ${test}
