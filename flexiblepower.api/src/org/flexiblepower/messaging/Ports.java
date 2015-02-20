@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface Ports {
     /**
-     * @return The specified {@link Port}s on the {@link Endpoint}.
+     * The specified {@link Port}s on the {@link Endpoint}.
      */
     Port[] value();
 }

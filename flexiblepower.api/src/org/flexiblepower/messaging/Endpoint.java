@@ -1,5 +1,8 @@
 package org.flexiblepower.messaging;
 
+/**
+ * An {@link Endpoint} is a component that can receive and send messages over a {@link Connection}.
+ */
 public interface Endpoint {
     /**
      * Called when a new connection has been established.
