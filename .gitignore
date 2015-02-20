@@ -4,6 +4,7 @@
 cnf/cache
 cnf/release
 bin
+bin_test
 generated
 cobertura.ser
 coverage.xml
