@@ -21,7 +21,7 @@ public @interface Port {
      *
      * This is the only required part of a {@link Port}. If no {@link #sends()} or {@link #accepts()} is defined, the
      * port has been defined without any implementation (like an interface). This is useful for specifying on an
-     * interface that should use a specific port. For example, see the {@link ResourceManager}.
+     * interface that should use a specific port.
      */
     String name();
 

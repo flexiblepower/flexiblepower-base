@@ -9,7 +9,6 @@ package org.flexiblepower.observation;
  * <li><code>org.flexiblepower.monitoring.observedBy</code>: describes the component that does the observations.
  * Normally this will be the name of the component itself.
  * <li><code>org.flexiblepower.monitoring.observationOf</code>: describes the physical thing that it is observing.
- * Normally this will be the resource identifier when using the {@link ResourceDriver}.
  * <li><code>org.flexiblepower.monitoring.type</code>: gives the full classname of the type of value that will be
  * published by the provider.
  * <li><code>org.flexiblepower.monitoring.type.X</code>: for each attribute, the X is replaced by the name of the

@@ -12,6 +12,7 @@ import org.flexiblepower.observation.ObservationTranslationHelper;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.framework.ServiceRegistration;
+import org.osgi.service.cm.ManagedServiceFactory;
 
 /**
  * This helper class should be used for correct registration of ObservationProviders in the service repository. This
@@ -37,11 +38,22 @@ public class ObservationProviderRegistrationHelper {
 
     private final BundleContext bundleContext;
     private final Hashtable<String, Object> properties;
-    private final Object serviceObject;
+    private Object serviceObject;
 
     /**
      * Creates a new instance of this class.
-     * 
+     *
+     * @param context
+     *            The {@link BundleContext} that is used to register the service.
+     */
+    public ObservationProviderRegistrationHelper(BundleContext context) {
+        bundleContext = context;
+        properties = new Hashtable<String, Object>();
+    }
+
+    /**
+     * Creates a new instance of this class.
+     *
      * @param serviceObject
      *            The object that will be put into the service registry during the {@link #register(Class...)} method.
      */
@@ -51,23 +63,42 @@ public class ObservationProviderRegistrationHelper {
 
     /**
      * Creates a new instance of this class.
-     * 
+     *
      * @param serviceObject
      *            The object that will be put into the service registry during the {@link #register(Class...)} method.
      * @param context
      *            The bundleContext that will be used for service registration.
      */
     public ObservationProviderRegistrationHelper(Object serviceObject, BundleContext context) {
+        this(context);
+        serviceObject(serviceObject);
+    }
+
+    /**
+     * Changes the object that is to be registered as a {@link ObservationProvider}. This object may also be a
+     * {@link ManagedServiceFactory} to be able to create many instances.
+     *
+     * This method set the default {@link #observationOf(String)} to the string "unkown" and {@link #observedBy(String)}
+     * to the classname of the service, if they have not been set yet.
+     *
+     * @param serviceObject
+     *            The object that is to be registeren as a {@link ObservationProvider}.
+     * @return this
+     */
+    public ObservationProviderRegistrationHelper serviceObject(Object serviceObject) {
         this.serviceObject = serviceObject;
-        bundleContext = context;
-        properties = new Hashtable<String, Object>();
-        properties.put(KEY_OBSERVED_BY, serviceObject.getClass().getName());
-        properties.put(KEY_OBSERVATION_OF, "unknown");
+        if (!properties.contains(KEY_OBSERVATION_OF)) {
+            properties.put(KEY_OBSERVATION_OF, "unknown");
+        }
+        if (!properties.contains(KEY_OBSERVED_BY)) {
+            properties.put(KEY_OBSERVED_BY, serviceObject.getClass().getName());
+        }
+        return this;
     }
 
     /**
      * Set a custom property.
-     * 
+     *
      * @param key
      *            The key of the property.
      * @param value
@@ -81,7 +112,7 @@ public class ObservationProviderRegistrationHelper {
 
     /**
      * Sets the observedBy property.
-     * 
+     *
      * @param observedBy
      *            A short description of the thing that is being observed. By default this is the classname of the
      *            service object.
@@ -93,7 +124,7 @@ public class ObservationProviderRegistrationHelper {
 
     /**
      * Sets the observationOf property.
-     * 
+     *
      * @param observationOf
      *            A short description of the thing that is being observed. Usually this is the resource identifier.
      * @return this
@@ -111,7 +142,7 @@ public class ObservationProviderRegistrationHelper {
 
     /**
      * Sets all of the type.* properties using the given type of observations.
-     * 
+     *
      * @param observationClass
      *            The type of the observations.
      * @return this
@@ -158,7 +189,7 @@ public class ObservationProviderRegistrationHelper {
 
     /**
      * Registers the service object with all of the set properties in the service registry.
-     * 
+     *
      * @param otherInterfaces
      *            Any other interfaces (next to the default {@link ObservationProvider}) that this service should
      *            register itself by.
