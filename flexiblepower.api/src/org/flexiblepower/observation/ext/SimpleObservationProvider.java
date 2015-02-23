@@ -42,6 +42,8 @@ public class SimpleObservationProvider<T> extends AbstractObservationProvider<T>
      * @param observationType
      *            The class of observations that will be done.
      * @return The {@link Builder} that can be used to finish up
+     * @param <T>
+     *            The type of the observations that the {@link SimpleObservationProvider} can send.
      */
     public static <T> Builder<T> create(Object source, Class<T> observationType) {
         return new Builder<T>(source, observationType);
