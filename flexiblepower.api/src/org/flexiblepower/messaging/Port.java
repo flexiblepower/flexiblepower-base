@@ -1,7 +1,6 @@
 package org.flexiblepower.messaging;
 
 import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -12,7 +11,6 @@ import java.lang.annotation.Target;
  * If multiple ports need to be defined on an {@link Endpoint}, use the {@link Ports} annotation.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Inherited
 @Target(ElementType.TYPE)
 public @interface Port {
     /**

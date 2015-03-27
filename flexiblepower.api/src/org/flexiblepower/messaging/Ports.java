@@ -1,7 +1,6 @@
 package org.flexiblepower.messaging;
 
 import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -11,7 +10,6 @@ import java.lang.annotation.Target;
  * not possible in Java to define multiple {@link Port} annotations on the same object.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Inherited
 @Target(ElementType.TYPE)
 public @interface Ports {
     /**
