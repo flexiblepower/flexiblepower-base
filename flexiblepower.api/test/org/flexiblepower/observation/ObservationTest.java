@@ -1,13 +1,15 @@
 package org.flexiblepower.observation;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class ObservationTest extends TestCase {
+public class ObservationTest {
     static class DeepValue {
         public int getX() {
             return 1;
@@ -56,6 +58,7 @@ public class ObservationTest extends TestCase {
         }
     }
 
+    @Test
     public void testDeepValues() {
         Observation<ParentValue> observation = new Observation<ParentValue>(new Date(), new ParentValue());
 

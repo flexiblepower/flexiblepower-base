@@ -28,7 +28,7 @@ import javax.measure.unit.Unit;
  *     public double doubleValue(Unit&lt;Velocity&gt; unit) { ... }
  *     public long longValue(Unit&lt;Velocity&gt; unit) { ... }
  * }
- * 
+ *
  * Thread.wait(new Delay(24, HOUR)); // Assuming Thread.wait(Measurable&lt;Duration&gt;) method.
  * </pre>
  *
@@ -41,7 +41,7 @@ import javax.measure.unit.Unit;
  *     public double doubleValue(Unit&lt;Velocity&gt; unit) { ... } // Returns vector norm.
  *     ...
  * }
- * 
+ *
  * class Sensors&lt;Q extends Quantity&gt; extends Measure&lt;double[], Q&gt; {
  *     public doubleValue(Unit&lt;Q&gt; unit) { ... } // Returns median value.
  *     ...
@@ -88,4 +88,31 @@ public interface Measurable<Q extends Quantity> extends Comparable<Measurable<Q>
      * @return A new measurable that contains the summed up value of this and the other one.
      */
     Measurable<Q> add(Measurable<Q> other);
+
+    /**
+     * Subtracts the other Measurable from this one, returning a Measurable object of the same type as the original.
+     *
+     * @param other
+     *            The measurable that should be subtracted from this one.
+     * @return A new measurable that contains the subtracted value of this and the other one.
+     */
+    Measurable<Q> subtract(Measurable<Q> other);
+
+    /**
+     * Multiplies the other Measurable with this one, returning a Measurable object of the same type as the original.
+     *
+     * @param other
+     *            The measurable that should be multiplied with this one.
+     * @return A new measurable that contains the multiplied value of this and the other one.
+     */
+    Measurable<Q> multiply(Measurable<Q> other);
+
+    /**
+     * Divides the other Measurable with this one, returning a Measurable object of the same type as the original.
+     *
+     * @param other
+     *            The measurable that should be divided with this one.
+     * @return A new measurable that contains the divided value of this and the other one.
+     */
+    Measurable<Q> divide(Measurable<Q> other);
 }

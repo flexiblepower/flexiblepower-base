@@ -21,14 +21,16 @@ import javax.measure.unit.Unit;
  * VectorMeasure&lt;Velocity&gt; v2d = VectorMeasure.valueOf(-2.2, -3.0, KNOTS);
  * VectorMeasure&lt;ElectricCurrent&gt; c2d = VectorMeasure.valueOf(-7.3, 3.5, NANOAMPERE);
  * </pre>
- * 
+ *
  * Subclasses may provide fixed dimensions specializations:
- * 
+ *
  * <pre>
  * class Velocity2D extends VectorMeasure&lt;Velocity&gt; {
  *     public Velocity2D(double x, double y, Unit&lt;Velocity&gt; unit) { ... }
  * }
  * 
+ *
+ *
  * </pre>
  *
  * Measurement vectors may use {@link CompoundUnit compound units}:
@@ -40,7 +42,7 @@ import javax.measure.unit.Unit;
  *
  * &gt; [12°19'42", 22°12'48"]
  * </pre>
- * 
+ *
  * Instances of this class (and sub-classes) are immutable.
  *
  * @param <Q>
@@ -73,6 +75,63 @@ public abstract class VectorMeasure<Q extends Quantity> extends Measure<double[]
             return valueOf(result, getUnit());
         } else {
             return Measure.valueOf(doubleValue(getUnit()) + other.doubleValue(getUnit()), getUnit());
+        }
+    }
+
+    @Override
+    public Measurable<Q> subtract(Measurable<Q> other) {
+        if (other instanceof VectorMeasure) {
+            VectorMeasure<Q> otherVector = (VectorMeasure<Q>) other;
+            double[] left = getValue();
+            double[] right = otherVector.to(getUnit()).getValue();
+            if (left.length != right.length) {
+                throw new UnsupportedOperationException("The 2 vectors have different lengths");
+            }
+            double[] result = new double[left.length];
+            for (int ix = 0; ix < result.length; ix++) {
+                result[ix] = left[ix] - right[ix];
+            }
+            return valueOf(result, getUnit());
+        } else {
+            return Measure.valueOf(doubleValue(getUnit()) - other.doubleValue(getUnit()), getUnit());
+        }
+    }
+
+    @Override
+    public Measurable<Q> multiply(Measurable<Q> other) {
+        if (other instanceof VectorMeasure) {
+            VectorMeasure<Q> otherVector = (VectorMeasure<Q>) other;
+            double[] left = getValue();
+            double[] right = otherVector.to(getUnit()).getValue();
+            if (left.length != right.length) {
+                throw new UnsupportedOperationException("The 2 vectors have different lengths");
+            }
+            double[] result = new double[left.length];
+            for (int ix = 0; ix < result.length; ix++) {
+                result[ix] = left[ix] * right[ix];
+            }
+            return valueOf(result, getUnit());
+        } else {
+            return Measure.valueOf(doubleValue(getUnit()) * other.doubleValue(getUnit()), getUnit());
+        }
+    }
+
+    @Override
+    public Measurable<Q> divide(Measurable<Q> other) {
+        if (other instanceof VectorMeasure) {
+            VectorMeasure<Q> otherVector = (VectorMeasure<Q>) other;
+            double[] left = getValue();
+            double[] right = otherVector.to(getUnit()).getValue();
+            if (left.length != right.length) {
+                throw new UnsupportedOperationException("The 2 vectors have different lengths");
+            }
+            double[] result = new double[left.length];
+            for (int ix = 0; ix < result.length; ix++) {
+                result[ix] = left[ix] / right[ix];
+            }
+            return valueOf(result, getUnit());
+        } else {
+            return Measure.valueOf(doubleValue(getUnit()) / other.doubleValue(getUnit()), getUnit());
         }
     }
 
