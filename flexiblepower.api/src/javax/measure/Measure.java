@@ -280,6 +280,21 @@ public abstract class Measure<V, Q extends Quantity> implements Measurable<Q>, S
         }
 
         @Override
+        public Measurable<Q> subtract(Measurable<Q> other) {
+            return new Double<Q>(this.value - other.doubleValue(this.unit), this.unit);
+        }
+
+        @Override
+        public Measurable<Q> multiply(Measurable<Q> other) {
+            return new Double<Q>(this.value * other.doubleValue(this.unit), this.unit);
+        }
+
+        @Override
+        public Measurable<Q> divide(Measurable<Q> other) {
+            return new Double<Q>(this.value / other.doubleValue(this.unit), this.unit);
+        }
+
+        @Override
         public Measure<java.lang.Double, Q> to(Unit<Q> unit) {
             if ((unit == this.unit) || (unit.equals(this.unit))) {
                 return this;
@@ -325,6 +340,21 @@ public abstract class Measure<V, Q extends Quantity> implements Measurable<Q>, S
         @Override
         public Measurable<Q> add(Measurable<Q> other) {
             return new Long<Q>(this.value + other.longValue(this.unit), this.unit);
+        }
+
+        @Override
+        public Measurable<Q> subtract(Measurable<Q> other) {
+            return new Long<Q>(this.value - other.longValue(this.unit), this.unit);
+        }
+
+        @Override
+        public Measurable<Q> multiply(Measurable<Q> other) {
+            return new Long<Q>(this.value * other.longValue(this.unit), this.unit);
+        }
+
+        @Override
+        public Measurable<Q> divide(Measurable<Q> other) {
+            return new Long<Q>(this.value / other.longValue(this.unit), this.unit);
         }
 
         @Override
@@ -385,6 +415,21 @@ public abstract class Measure<V, Q extends Quantity> implements Measurable<Q>, S
         }
 
         @Override
+        public Measurable<Q> subtract(Measurable<Q> other) {
+            return new Double<Q>(this.value - other.doubleValue(this.unit), this.unit);
+        }
+
+        @Override
+        public Measurable<Q> multiply(Measurable<Q> other) {
+            return new Double<Q>(this.value * other.doubleValue(this.unit), this.unit);
+        }
+
+        @Override
+        public Measurable<Q> divide(Measurable<Q> other) {
+            return new Double<Q>(this.value / other.doubleValue(this.unit), this.unit);
+        }
+
+        @Override
         public Measure<java.lang.Float, Q> to(Unit<Q> unit) {
             if ((unit == this.unit) || (unit.equals(this.unit))) {
                 return this;
@@ -433,6 +478,21 @@ public abstract class Measure<V, Q extends Quantity> implements Measurable<Q>, S
         }
 
         @Override
+        public Measurable<Q> subtract(Measurable<Q> other) {
+            return new Long<Q>(this.value - other.longValue(this.unit), this.unit);
+        }
+
+        @Override
+        public Measurable<Q> multiply(Measurable<Q> other) {
+            return new Long<Q>(this.value * other.longValue(this.unit), this.unit);
+        }
+
+        @Override
+        public Measurable<Q> divide(Measurable<Q> other) {
+            return new Long<Q>(this.value / other.longValue(this.unit), this.unit);
+        }
+
+        @Override
         public Measure<java.lang.Integer, Q> to(Unit<Q> unit) {
             if ((unit == this.unit) || (unit.equals(this.unit))) {
                 return this;
@@ -457,5 +517,6 @@ public abstract class Measure<V, Q extends Quantity> implements Measurable<Q>, S
         }
 
         private static final long serialVersionUID = 1L;
+
     }
 }

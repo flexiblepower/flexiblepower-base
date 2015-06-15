@@ -5,6 +5,8 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
+import org.junit.Test;
+
 public class ObservationTranslationHelperTest extends TestCase {
     interface TestBean {
         boolean isBoolean();
@@ -12,14 +14,6 @@ public class ObservationTranslationHelperTest extends TestCase {
         int getInteger();
 
         String getComplexNamingType();
-    }
-
-    public void testGettingGetters() {
-        Map<String, Method> map = ObservationTranslationHelper.getGetterMethods(TestBean.class);
-        assertEquals(3, map.size());
-        assertEquals(Boolean.TYPE, map.get("boolean").getReturnType());
-        assertEquals(Integer.TYPE, map.get("integer").getReturnType());
-        assertEquals(String.class, map.get("complex_naming_type").getReturnType());
     }
 
     interface NonBean {
@@ -34,6 +28,16 @@ public class ObservationTranslationHelperTest extends TestCase {
         X, Y, Z;
     }
 
+    @Test
+    public void testGettingGetters() {
+        Map<String, Method> map = ObservationTranslationHelper.getGetterMethods(TestBean.class);
+        assertEquals(3, map.size());
+        assertEquals(Boolean.TYPE, map.get("boolean").getReturnType());
+        assertEquals(Integer.TYPE, map.get("integer").getReturnType());
+        assertEquals(String.class, map.get("complex_naming_type").getReturnType());
+    }
+
+    @Test
     public void testIsJavaBean() {
         assertTrue(ObservationTranslationHelper.isJavaBean(TestBean.class));
         assertFalse(ObservationTranslationHelper.isJavaBean(String.class));
