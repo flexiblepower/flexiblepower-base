@@ -1,8 +1,7 @@
 -buildpath: \
 	biz.aQute.bnd.annotation;version="[1.43,3.0)",\
 	osgi.core;version="[4.3,5.0)",\
-	osgi.cmpn;version="[4.3,5.0)",\
-	junit
+	osgi.cmpn;version="[4.3,5.0)"
 -testpath: ${test-buildpath}
 
 Bundle-Version: 3.0.0.${qualifier}
