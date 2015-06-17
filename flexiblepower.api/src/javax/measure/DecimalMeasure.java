@@ -29,7 +29,7 @@ import javax.measure.unit.Unit;
  * DecimalMeasure&lt;Velocity&gt; c = DecimalMeasure.valueOf("299792458 m/s");
  * DecimalMeasure&lt;Velocity&gt; milesPerHour = c.to(MILES_PER_HOUR, MathContext.DECIMAL128);
  * System.out.println(milesPerHour);
- * 
+ *
  * &gt; 670616629.3843951324266284896206156 mph
  * </pre>
  *
@@ -193,33 +193,6 @@ public class DecimalMeasure<Q extends Quantity> extends Measure<BigDecimal, Q> {
             return new DecimalMeasure<Q>(value.add(((DecimalMeasure<Q>) other).to(unit).value), unit);
         } else {
             return new DecimalMeasure<Q>(value.add(BigDecimal.valueOf(other.doubleValue(unit))), unit);
-        }
-    }
-
-    @Override
-    public Measurable<Q> subtract(Measurable<Q> other) {
-        if (other instanceof DecimalMeasure) {
-            return new DecimalMeasure<Q>(value.subtract(((DecimalMeasure<Q>) other).to(unit).value), unit);
-        } else {
-            return new DecimalMeasure<Q>(value.subtract(BigDecimal.valueOf(other.doubleValue(unit))), unit);
-        }
-    }
-
-    @Override
-    public Measurable<Q> multiply(Measurable<Q> other) {
-        if (other instanceof DecimalMeasure) {
-            return new DecimalMeasure<Q>(value.multiply(((DecimalMeasure<Q>) other).to(unit).value), unit);
-        } else {
-            return new DecimalMeasure<Q>(value.multiply(BigDecimal.valueOf(other.doubleValue(unit))), unit);
-        }
-    }
-
-    @Override
-    public Measurable<Q> divide(Measurable<Q> other) {
-        if (other instanceof DecimalMeasure) {
-            return new DecimalMeasure<Q>(value.divide(((DecimalMeasure<Q>) other).to(unit).value), unit);
-        } else {
-            return new DecimalMeasure<Q>(value.divide(BigDecimal.valueOf(other.doubleValue(unit))), unit);
         }
     }
 
