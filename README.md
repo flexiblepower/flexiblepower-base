@@ -9,7 +9,7 @@ After cloning this repository, make sure to get the `cnf/gradle` submodule by ru
 
 You can now import the projects into your Eclipse workspace and get started. The [https://github.com/flexiblepower/fpai-core/wiki/SettingUpYourIDE](FPAI core wiki) explains how to set up your Eclipse IDE for usage with bndtools.
 
-# Questions?
+# Flexiblepower-base Questions?
 [Ask your question here](https://github.com/flexiblepower/flexiblepower-base/issues/new?title=Question:My%20Title&body)
 
 # Bugs
