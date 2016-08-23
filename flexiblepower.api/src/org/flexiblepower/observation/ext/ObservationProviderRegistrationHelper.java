@@ -87,10 +87,10 @@ public class ObservationProviderRegistrationHelper {
      */
     public ObservationProviderRegistrationHelper serviceObject(Object serviceObject) {
         this.serviceObject = serviceObject;
-        if (!properties.contains(KEY_OBSERVATION_OF)) {
+        if (!properties.containsKey(KEY_OBSERVATION_OF)) {
             properties.put(KEY_OBSERVATION_OF, "unknown");
         }
-        if (!properties.contains(KEY_OBSERVED_BY)) {
+        if (!properties.containsKey(KEY_OBSERVED_BY)) {
             properties.put(KEY_OBSERVED_BY, serviceObject.getClass().getName());
         }
         return this;
