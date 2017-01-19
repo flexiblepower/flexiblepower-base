@@ -143,4 +143,11 @@ public interface ConnectionManager {
      * multiple cardinality, or it has single cardinality with no other options, then it will connect these two.
      */
     void autoConnect();
+
+    void connectEndpointPorts(String onePid,
+                              String onePort,
+                              String otherPid,
+                              String otherPort) throws ConnectionManagerException;
+
+    ConnectionFuture asyncConnectEndpointPorts(String onePid, String onePort, String otherPid, String otherPort);
 }
