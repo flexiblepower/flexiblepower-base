@@ -144,10 +144,10 @@ public interface ConnectionManager {
      */
     void autoConnect();
 
-    void connectEndpointPorts(String onePid,
-                              String onePort,
-                              String otherPid,
-                              String otherPort) throws ConnectionManagerException;
+    PotentialConnection connectEndpointPorts(String onePid,
+                                             String onePort,
+                                             String otherPid,
+                                             String otherPort) throws ConnectionManagerException;
 
     ConnectionFuture asyncConnectEndpointPorts(String onePid, String onePort, String otherPid, String otherPort);
 }
