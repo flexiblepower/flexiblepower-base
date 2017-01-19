@@ -13,8 +13,8 @@ public interface ConnectionFuture {
 
     boolean isConnected();
 
-    void awaitConnection();
+    void awaitConnection() throws InterruptedException;
 
-    void awaitConnection(Measurable<Duration> timetout) throws TimeoutException;
+    void awaitConnection(Measurable<Duration> timeout) throws TimeoutException, InterruptedException;
 
 }
