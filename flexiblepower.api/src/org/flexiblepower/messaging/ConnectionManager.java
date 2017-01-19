@@ -137,17 +137,55 @@ public interface ConnectionManager {
     SortedMap<String, ? extends ManagedEndpoint> getEndpoints();
 
     /**
+     * Connect two Endpoints given the the pids of the Endpoint and the name of the Ports.
+     *
+     * This method tries to connect the endpoints instantly. When the connection fails an ConnectionManagerException
+     * will be thrown. When components are created, it usually takes some time before they are visible for the
+     * {@link ConnectionManager}. In that case, it might be useful to use
+     * {@link #asyncConnectEndpointPorts(String, String, String, String)}.
+     *
+     * @param onePid
+     *            The pid of the first component
+     * @param onePort
+     *            The name of the port of the first component
+     * @param otherPid
+     *            The pid of the second component
+     * @param otherPort
+     *            The name of the port of the second component
+     * @return The {@link PotentialConnection} associated with the created connection
+     * @throws ConnectionManagerException
+     *             When the connection could not be made
+     */
+    PotentialConnection connectEndpointPorts(String onePid,
+                                             String onePort,
+                                             String otherPid,
+                                             String otherPort) throws ConnectionManagerException;
+
+    /**
+     * Connect two Endpoints that will be available in the future.
+     *
+     * When components are instantiated, it usually takes some time before they become visible for the
+     * {@link ConnectionManager}. With this method, a request can be made to connect two Endpoints in the future. The
+     * {@link ConnectionManager} will connect the components once they are available.
+     *
+     * @param onePid
+     *            The pid of the first component
+     * @param onePort
+     *            The name of the port of the first component
+     * @param otherPid
+     *            The pid of the second component
+     * @param otherPort
+     *            The name of the port of the second component
+     * @return {@link ConnectionFuture} object that can be used to check if the connections were made, or to cancel the
+     *         connection request
+     */
+    ConnectionFuture asyncConnectEndpointPorts(String onePid, String onePort, String otherPid, String otherPort);
+
+    /**
      * This method tries to connect all {@link PotentialConnection}s for which no other options is available. This means
      * that for any unconnected {@link EndpointPort} with a single cardinality, it tries to determine which
      * {@link PotentialConnection}s are available. If there is only 1 available and the other {@link EndpointPort} has
      * multiple cardinality, or it has single cardinality with no other options, then it will connect these two.
      */
     void autoConnect();
-
-    PotentialConnection connectEndpointPorts(String onePid,
-                                             String onePort,
-                                             String otherPid,
-                                             String otherPort) throws ConnectionManagerException;
-
-    ConnectionFuture asyncConnectEndpointPorts(String onePid, String onePort, String otherPid, String otherPort);
 }
