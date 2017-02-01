@@ -21,6 +21,13 @@ import javax.measure.quantity.Duration;
 public interface FlexiblePowerContext {
 
     /**
+     * @return A universally unique identifier for this EF-Pi installation. The EF-Pi identifier is a String that
+     *         uniquely identifies this EF-Pi instance. The EF-Pi identifier must not change when the system is
+     *         restarted.
+     */
+    String efpiId();
+
+    /**
      * Returns the current time in milliseconds. Note that while the unit of time of the return value is a millisecond,
      * the granularity of the value depends on the underlying operating system and may be larger. For example, many
      * operating systems measure time in units of tens of milliseconds.
